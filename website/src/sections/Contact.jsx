@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { staggerContainer, fadeInUp } from '../utils/animations'
 import DotGrid from '../components/reactbits/DotGrid'
@@ -129,6 +129,18 @@ function ContactCard({ link }) {
   const [hovered, setHovered] = useState(false)
   const { name, username, url, Icon } = link
 
+  // Detect desktop/laptop screens to dynamically adjust hover spacing
+  const [isDesktop, setIsDesktop] = useState(false)
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsDesktop(window.innerWidth >= 1024)
+      const handleResize = () => setIsDesktop(window.innerWidth >= 1024)
+      window.addEventListener('resize', handleResize)
+      return () => window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
   return (
     <motion.a
       href={url}
@@ -142,7 +154,7 @@ function ContactCard({ link }) {
     >
       {/* Icon + Platform Name wrapper — shifts up on hover */}
       <motion.div
-        animate={{ y: hovered ? -12 : 0 }}
+        animate={{ y: hovered ? (isDesktop ? -22 : -12) : 0 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
         className="flex flex-col items-center gap-2.5"
       >
@@ -161,7 +173,7 @@ function ContactCard({ link }) {
         initial={{ opacity: 0, y: 8 }}
         animate={{
           opacity: hovered ? 1 : 0,
-          y: hovered ? 16 : 24,
+          y: hovered ? (isDesktop ? 28 : 16) : 24,
         }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
         className="absolute text-xs text-text-muted font-medium select-all text-center px-4 max-w-full truncate"
