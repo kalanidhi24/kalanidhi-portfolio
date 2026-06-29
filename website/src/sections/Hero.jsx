@@ -71,7 +71,7 @@ export default function Hero() {
           triggerOnHover={true}
           textAlign="center"
           style={{
-            fontFamily: "'Space Grotesk', system-ui, sans-serif",
+            fontFamily: "'Silkscreen', system-ui, sans-serif",
             fontWeight: 700,
             fontSize: 'clamp(3rem, 8vw, 5rem)',
             lineHeight: 1.05,
@@ -97,7 +97,7 @@ export default function Hero() {
           textAlign="center"
           colorTo="#818cf8"
           style={{
-            fontFamily: "'Space Grotesk', system-ui, sans-serif",
+            fontFamily: "'Silkscreen', system-ui, sans-serif",
             fontWeight: 700,
             fontSize: 'clamp(3rem, 8vw, 5rem)',
             lineHeight: 1.05,
